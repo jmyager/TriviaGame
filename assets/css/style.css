@@ -1,0 +1,18 @@
+body {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    color: white;
+}
+
+.jumbotron {
+    background-color: rgba(40,60,80,.3);
+}
+
+.answer:hover {
+    border: 1px solid white;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 25%;
+    position: relative;
+    left: 37.5%;
+}

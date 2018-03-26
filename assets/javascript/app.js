@@ -8,28 +8,28 @@ var i = 0;
 // Define object containing all questions and answers
 var questionArray = [
     {
-        q: "What is the flight trajectory of a squirrel?",
-        a1: "Answer 1",
-        a2: "Answer 2",
-        a3: "Answer 3",
-        a4: "Answer 4",
-        ca: "Answer 2"
+        q: "What is the fastest fish in the Ocean?",
+        a1: "Barracuda",
+        a2: "Sailfish",
+        a3: "Clownfish",
+        a4: "Marlin",
+        ca: "Sailfish"
     },
     {
-        q: "What is the flight trajectory of a bat?",
-        a1: "Answer 1",
-        a2: "Answer 2",
-        a3: "Answer 3",
-        a4: "Answer 4",
-        ca: "Answer 4"
+        q: "By area, what is the smallest ocean in the world?",
+        a1: "Atlantic Ocean",
+        a2: "Indian Ocean",
+        a3: "Pacific Ocean",
+        a4: "Arctic Ocean",
+        ca: "Arctic Ocean"
     },
     {
-        q: "What is the flight trajectory of a seagull?",
-        a1: "Answer 1",
-        a2: "Answer 2",
-        a3: "Answer 3",
-        a4: "Answer 4",
-        ca: "Answer 4"
+        q: "What is the largest animal currently on Earth?",
+        a1: "Blue Whale",
+        a2: "Whale Shark",
+        a3: "Giant Squid",
+        a4: "Humpback Whale",
+        ca: "Blue Whale"
     }
 ];
 
@@ -43,17 +43,15 @@ var questionIntervalId;
 function loadQuestion(questionSelect) {
     // Remove start button and clear text
     $("#container").empty();
-    $("#message-header").empty();
+    $("#header-message").empty();
         
-    // displayQuestion function is called to display first question & answers on the page.
+    // displayQuestion function is called to display question & answers on the page.
     displayQuestion(questionSelect);
 
-    // Display timer, set intervalId and begin timer function
+    // Display timer, reset the count, set intervalId and begin timer function
+    count = 10;
     $("#time").html(count);
     intervalId = setInterval(function(){questionTimer()},1000);
-
-    // User pressed one of 4 answer buttons
-    checkAnswer(questionSelect);
 }
 
 // Define function that will clear previous question/answers and input new question and answers
@@ -105,38 +103,56 @@ function checkAnswer (questionSelect) {
 function checkGuess (questionSelect) {
     if (userGuess === questionSelect[i].ca){
         correct++;
-        $("#message-header").html("You guessed correctly!");
+        $("#header-message").html("You guessed correctly!");
     }
     else {
         incorrect++;
-        $("#message-header").html("You guess incorrectly!");
+        $("#header-message").html("You guessed incorrectly!");
        
     }
     showCorrectAnswer();
     clearInterval(intervalId);
+    
 }
 
 // Define funcion to show correct answer content when user has answered or time has run out
 function showCorrectAnswer() {
     $("#question, #answer1, #answer2, #answer3, #answer4").empty();
-    $("#question").html("The correct answer is...");
+    $("#question").html("The correct answer is " + questionArray[i].ca);
     nextQuestion();
 }
 
 // define function to move to the next question in the array and check to see if it is the last question
 function nextQuestion() {
-    if (i === questionArray.length) {
+    console.log(i);
+    if (questionIntervalId != null) {
+    clearInterval(questionIntervalId);
+    }
+    if (i === questionArray.length - 1) {
         $("#question, #answer1, #answer2, #answer3, #answer4").empty();
-        $("#header-message").html("End of Triva Game!");
+        $("#header-message").html("End of Trivia Game!");
+        $("#answer1").html("Correct answers: " + correct + "/" + questionArray.length);
+        $("#answer2").html("Incorrect answers: " + incorrect + "/" + questionArray.length);
+        // stopTimer();
     }
     else {
-        i++;
+        console.log(i);
         questionIntervalId = setInterval(function(){loadQuestion(questionArray)},5000);
         console.log(i);
     }
+    i++;
+    console.log(i);
+}
+
+// Define function to stop post-question timer
+function stopTimer() {
+    clearInterval(questionIntervalId);
 }
 
 // User presses start button to start the game.
 $("#start").click(function() {
+    // User pressed one of 4 answer buttons
+    checkAnswer(questionArray);
     loadQuestion(questionArray);
+    
 });
