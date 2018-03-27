@@ -2,7 +2,6 @@
 var correct = 0;
 var incorrect = 0;
 var userGuess;
-var rightWrong;
 var i = 0;
 
 // Define object containing all questions and answers
@@ -70,7 +69,8 @@ function questionTimer() {
     $("#time").html(count);
 
     if (count < 0) {
-        alert("Out of time!");
+        incorrect++;
+        $("header-message").html("Out of time!");
         clearInterval(intervalId);
         count = 10;
         $("#time").html(count);
@@ -133,7 +133,7 @@ function nextQuestion() {
         $("#header-message").html("End of Trivia Game!");
         $("#answer1").html("Correct answers: " + correct + "/" + questionArray.length);
         $("#answer2").html("Incorrect answers: " + incorrect + "/" + questionArray.length);
-        // stopTimer();
+        resetGame();
     }
     else {
         console.log(i);
@@ -154,5 +154,13 @@ $("#start").click(function() {
     // User pressed one of 4 answer buttons
     checkAnswer(questionArray);
     loadQuestion(questionArray);
-    
 });
+
+// Define function to reset game at the end
+function resetGame() {
+    $("#container").html('<a class="btn btn-primary btn-lg" id="start" href="#" role="button">Restart!</a>');
+    correct = 0;
+    incorrect = 0;
+    userGuess;
+    i = 0;
+}
