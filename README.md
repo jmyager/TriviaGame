@@ -14,7 +14,7 @@ For each question, one of the following results occurs:
 
 3. A timeout tells the player that time's up and displays the correct answer. And you guessed it, proceeds to the next question after a few seconds, all without any user input.
 
-On the final screen, the player is shown their number of correct answers, incorrect answers, and is given an option to restart the game. It's important to note that when the player restarts the game the window * *does not reload* *, but rather all timers and data stores are reset.
+On the final screen, the player is shown their number of correct answers, incorrect answers, and is given an option to restart the game. It's important to note that when the player restarts the game the window *does not reload*, but rather all timers and data stores are reset, effectively "resetting" the game.
 
-##Demo
+## Demo
 View the live demo [here](http://www.joshyager.com/TriviaGame/)
