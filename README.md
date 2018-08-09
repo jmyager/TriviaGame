@@ -6,6 +6,8 @@ Trivia Game was an early learning exercise in building a Javascript and Jquery a
 
 Guiding the player through the trivia quiz, the application needed to show just one question at a time. The player is required to answer the question or allow the timer to run out, either way the quiz proceeds.
 
+![Screenshot 1](/public/images/screen1.png?raw=true "Screenshot 1")
+
 For each question, one of the following results occurs:
 
 1. A correct answer grants the player a screen congratulating them on their success and after a few seconds displays the following question (all without user input, only timers).
