@@ -29,6 +29,46 @@ var questionArray = [
         a3: "Giant Squid",
         a4: "Humpback Whale",
         ca: "Blue Whale"
+    },
+    {
+        q: "The water ____________ in northern oceans.",
+        a1: "Spins clockwise",
+        a2: "Spins counterclockwise",
+        a3: "Is the saltiest",
+        a4: "Freezes often",
+        ca: "Spins clockwise"
+    },
+    {
+        q: "The Red Sea and the ________ have the saltiest water of all open seas and oceans.",
+        a1: "Persian Gulf",
+        a2: "Caspian Sea",
+        a3: "Dead Sea",
+        a4: "China Sea",
+        ca: "Persian Gulf"
+    },
+    {
+        q: "How many oceans are there today?",
+        a1: "5",
+        a2: "4",
+        a3: "3",
+        a4: "6",
+        ca: "5"
+    },
+    {
+        q: "When is the sea considered the 'deep sea'?",
+        a1: "100 feet",
+        a2: "320 feet",
+        a3: "650 feet",
+        a4: "1000 feet",
+        ca: "650 feet"
+    },
+    {
+        q: "How deep is the Mariana Trench, the deepest place on Earth?",
+        a1: "24,000 feet",
+        a2: "36,201 feet",
+        a3: "42,000 feet",
+        a4: "50,100 feet",
+        ca: "36,201 feet"
     }
 ];
 
@@ -69,11 +109,11 @@ function questionTimer() {
     $("#time").html(count);
 
     if (count < 0) {
-        incorrect++;
-        $("header-message").html("Out of time!");
+        $("#header-message").html("Out of time!");
         clearInterval(intervalId);
         count = 10;
         $("#time").html(count);
+        incorrect++;
         showCorrectAnswer();
     }
 }
@@ -158,7 +198,7 @@ $("#start").click(function() {
 
 // Define function to reset game at the end
 function resetGame() {
-    $("#container").html('<a class="btn btn-primary btn-lg" id="start" href="#" role="button">Restart!</a>');
+    $("#container").html('<a class="btn btn-primary btn-lg" id="restart" href="#" role="button">Restart!</a>');
     correct = 0;
     incorrect = 0;
     userGuess;
